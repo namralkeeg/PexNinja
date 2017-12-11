@@ -42,6 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\BinaryReaderEndian.cs" />
+    <Compile Include="IO\BinaryWriterEndian.cs" />
+    <Compile Include="IO\Prefix.cs" />
+    <Compile Include="NumberHelpers\DoubleUnion.cs" />
+    <Compile Include="NumberHelpers\Endian.cs" />
+    <Compile Include="NumberHelpers\SingleUnion.cs" />
+    <Compile Include="NumberHelpers\Swap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
