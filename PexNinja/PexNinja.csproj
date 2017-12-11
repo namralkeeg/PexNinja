@@ -49,6 +49,18 @@
     <Compile Include="NumberHelpers\Endian.cs" />
     <Compile Include="NumberHelpers\SingleUnion.cs" />
     <Compile Include="NumberHelpers\Swap.cs" />
+    <Compile Include="Pex\IPex.cs" />
+    <Compile Include="Pex\IPexHeader.cs" />
+    <Compile Include="Pex\PexBasic.cs" />
+    <Compile Include="Pex\PexFactory.cs" />
+    <Compile Include="Pex\PexFallout4.cs" />
+    <Compile Include="Pex\PexHeader.cs" />
+    <Compile Include="Pex\PexHeaderFactory.cs" />
+    <Compile Include="Pex\PexHeaderFallout4.cs" />
+    <Compile Include="Pex\PexHeaderSkyrim.cs" />
+    <Compile Include="Pex\PexHeaderSkyrimSE.cs" />
+    <Compile Include="Pex\PexSkyrim.cs" />
+    <Compile Include="Pex\PexSkyrimSE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
