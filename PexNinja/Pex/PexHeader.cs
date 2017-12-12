@@ -31,10 +31,10 @@ namespace PexNinja.Pex
             compTime = compTime.AddSeconds(Convert.ToDouble(CompilationTime));
 
             var sb = new StringBuilder();
-            sb.Append($"Magic: {Magic} ");
-            sb.Append($"Major: {MajorVersion} ");
-            sb.Append($"Minor: {MinorVersion} ");
-            sb.Append($"Game ID: {GameID} ");
+            sb.Append($"Magic: {Magic.ToString("X8")} ");
+            sb.Append($"Major: {MajorVersion.ToString("X2")} ");
+            sb.Append($"Minor: {MinorVersion.ToString("X2")} ");
+            sb.Append($"Game ID: {GameID.ToString("X4")} ");
             sb.Append($"Compile: {compTime}{Environment.NewLine}");
             sb.Append($"Script Name: {SourceFileName}{Environment.NewLine}");
             sb.Append($"User Name: {UserName}{Environment.NewLine}");
