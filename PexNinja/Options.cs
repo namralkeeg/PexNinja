@@ -45,5 +45,8 @@ namespace PexNinja
         [DefaultValue(new string[] { ".pex" })]
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate)]
         public string[] ValidExtensions { get; set; } = new string[] { ".pex" };
+
+        [JsonProperty]
+        public string Game { get; set; }
     }
 }

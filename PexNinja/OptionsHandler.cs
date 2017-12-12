@@ -13,6 +13,7 @@ namespace PexNinja
         private string programName;
         private string programPath;
         private string versionNumber;
+        private string[] validGames = new string[] { "skyrim", "skyrimse", "fallout4" };
         private OptionSet genericOptionSet;
         private OptionSet configOptionSet;
         public Options ProgramOptions { get; protected set; }
@@ -38,9 +39,12 @@ namespace PexNinja
                 {"version", "Show application version information.", v => ProgramOptions.ShowVersion = v != null },
                 {"s|source=", "Source Folder(s), defaults to current folder.", s => ProgramOptions.SourceFolders.Add(s) },
                 {"b|backup", "Enables the creation of backup Files.", b => ProgramOptions.DoBackup = b != null },
-                {"m|mask=", "Character to mask computer and user name. Defaults to *", m => ProgramOptions.Mask = m.Substring(0,1) },
+                {"m|mask=", "Character to mask computer and user name. Defaults to *",
+                    m => ProgramOptions.Mask = m.Substring(0,1) },
                 {"r|recursive", "Recursively process all subfolders.", r => ProgramOptions.Recursive = r != null },
-                {"verbose", "Enables verbose output mode.", v => ProgramOptions.Verbose = v != null }
+                {"verbose", "Enables verbose output mode.", v => ProgramOptions.Verbose = v != null },
+                {"g|game=", "Specifies a specific game, disables autodetection. (skyrim, skyrimse, fallout4)",
+                    g => ProgramOptions.Game = g },
             };
         }
 
@@ -60,6 +64,14 @@ namespace PexNinja
                 if (extras.Count > 0)
                 {
                     ProgramOptions.SourceFolders.AddRange(extras);
+                }
+
+                if (ProgramOptions.Game != null)
+                {
+                    if (!Array.Exists(validGames, s => s.Equals(ProgramOptions.Game.ToLower())))
+                    {
+                        throw new ApplicationException($"Invalid game specified: {ProgramOptions.Game}");
+                    }
                 }
 
                 if (ProgramOptions.SourceFolders.Count == 0)
