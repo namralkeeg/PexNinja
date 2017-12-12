@@ -44,7 +44,12 @@ namespace PexNinja
                 {"r|recursive", "Recursively process all subfolders.", r => ProgramOptions.Recursive = r != null },
                 {"verbose", "Enables verbose output mode.", v => ProgramOptions.Verbose = v != null },
                 {"g|game=", "Specifies a specific game, disables autodetection. (skyrim, skyrimse, fallout4)",
-                    g => ProgramOptions.Game = g },
+                    g => {
+                        if (!Array.Exists(validGames, s => s.Equals(g.ToLower())))
+                            throw new OptionException($"Invalid game specified: {g}", "-g");
+                        ProgramOptions.Game = g.ToLower();
+                    }
+                },
             };
         }
 
@@ -64,15 +69,6 @@ namespace PexNinja
                 if (extras.Count > 0)
                 {
                     ProgramOptions.SourceFolders.AddRange(extras);
-                }
-
-                if (ProgramOptions.Game != null)
-                {
-                    var lowerGame = ProgramOptions.Game.ToLower();
-                    if (!Array.Exists(validGames, s => s.Equals(lowerGame)))
-                    {
-                        throw new ApplicationException($"Invalid game specified: {ProgramOptions.Game}");
-                    }
                 }
 
                 if (ProgramOptions.SourceFolders.Count == 0)
