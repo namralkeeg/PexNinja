@@ -20,7 +20,7 @@ namespace PexNinja.NumberHelpers
 
         public static uint Swap(this uint value)
         {
-            uint x = (value & 0x0000FFFF) >> 16 | (value & 0xFFFF0000) << 16;
+            uint x = ((value >> 16) & 0x0000FFFF) | ((value << 16) & 0xFFFF0000);
             return ((x & 0xFF00FF00) >> 8 | (x & 0x00FF00FF) << 8);
         }
 
