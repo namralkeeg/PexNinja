@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.IO;
+using System.Text;
 using PexNinja.IO;
 using PexNinja.NumberHelpers;
 
@@ -10,6 +11,8 @@ namespace PexNinja.Pex
     {
         // Fallout 4 pex files are Little-Endian.
         protected const Endian byteOrder = Endian.Little;
+        private PexHeaderFallout4 header;
+        public override IPexHeader Header { get => header; protected set => header = (PexHeaderFallout4)value; }
 
         public PexFallout4() : this(new PexHeaderFallout4()) { }
         protected PexFallout4(IPexHeader pexHeader) : base(pexHeader) { }
@@ -95,6 +98,10 @@ namespace PexNinja.Pex
                 Header.MajorVersion = binaryReader.ReadByte();
                 Header.MinorVersion = binaryReader.ReadByte();
                 Header.GameID = binaryReader.ReadUInt16();
+                if (!Header.IsValid())
+                {
+                    return false;
+                }
                 Header.CompilationTime = binaryReader.ReadUInt64();
                 Header.SourceFileName = binaryReader.ReadWString();
                 Header.UserName = binaryReader.ReadWString();
@@ -127,6 +134,11 @@ namespace PexNinja.Pex
                 binaryWriter.WriteWString(Header.UserName);
                 binaryWriter.WriteWString(Header.ComputerName);
             }
+        }
+
+        public override string ToString()
+        {
+            return header.ToString();
         }
     }
 }

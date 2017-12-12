@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace PexNinja.Pex
 {
-    public interface IPex
+    public interface IPex : IDisposable
     {
         byte[] Data { get; }
         IPexHeader Header { get; }

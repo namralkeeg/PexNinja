@@ -22,6 +22,25 @@ namespace PexNinja.Pex
 
         #region Methods
         public abstract bool IsValid();
+
+        public override string ToString()
+        {
+            // Start with the unix epoch of Jan, 1, 1970.
+            var compTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            // Add the total seconds to the epoch.
+            compTime = compTime.AddSeconds(Convert.ToDouble(CompilationTime));
+
+            var sb = new StringBuilder();
+            sb.Append($"Magic: {Magic} ");
+            sb.Append($"Major: {MajorVersion} ");
+            sb.Append($"Minor: {MinorVersion} ");
+            sb.Append($"Game ID: {GameID} ");
+            sb.Append($"Compile: {compTime}{Environment.NewLine}");
+            sb.Append($"Script Name: {SourceFileName}{Environment.NewLine}");
+            sb.Append($"User Name: {UserName}{Environment.NewLine}");
+            sb.Append($"Computer Name: {ComputerName}");
+            return sb.ToString();
+        }
         #endregion
     }
 }

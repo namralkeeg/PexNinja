@@ -10,6 +10,8 @@ namespace PexNinja.Pex
     {
         // Skyrim(SE) pex files are Big-Endian
         protected const Endian byteOrder = Endian.Big;
+        private PexHeaderSkyrim header;
+        public override IPexHeader Header { get => header; protected set => header = (PexHeaderSkyrim)value; }
 
         public PexSkyrim() : this(new PexHeaderSkyrim()) { }
         protected PexSkyrim(IPexHeader pexHeader) : base(pexHeader) { }
@@ -95,6 +97,10 @@ namespace PexNinja.Pex
                 Header.MajorVersion = binaryReader.ReadByte();
                 Header.MinorVersion = binaryReader.ReadByte();
                 Header.GameID = binaryReader.ReadUInt16();
+                if (!Header.IsValid())
+                {
+                    return false;
+                }
                 Header.CompilationTime = binaryReader.ReadUInt64();
                 Header.SourceFileName = binaryReader.ReadWString();
                 Header.UserName = binaryReader.ReadWString();
@@ -124,6 +130,11 @@ namespace PexNinja.Pex
                 binaryWriter.WriteWString(Header.UserName);
                 binaryWriter.WriteWString(Header.ComputerName);
             }
+        }
+
+        public override string ToString()
+        {
+            return header.ToString();
         }
     }
 }

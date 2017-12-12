@@ -68,7 +68,8 @@ namespace PexNinja
 
                 if (ProgramOptions.Game != null)
                 {
-                    if (!Array.Exists(validGames, s => s.Equals(ProgramOptions.Game.ToLower())))
+                    var lowerGame = ProgramOptions.Game.ToLower();
+                    if (!Array.Exists(validGames, s => s.Equals(lowerGame)))
                     {
                         throw new ApplicationException($"Invalid game specified: {ProgramOptions.Game}");
                     }
