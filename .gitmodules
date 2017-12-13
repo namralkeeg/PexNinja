@@ -1,0 +1,3 @@
+[submodule "external/Keeg.IO"]
+	path = external/Keeg.IO
+	url = https://github.com/namralkeeg/Keeg.IO.git

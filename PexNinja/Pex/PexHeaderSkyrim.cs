@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 using System.IO;
-using PexNinja.IO;
-using PexNinja.NumberHelpers;
 
 namespace PexNinja.Pex
 {

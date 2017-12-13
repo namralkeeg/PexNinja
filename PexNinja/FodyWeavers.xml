@@ -4,6 +4,7 @@
     <IncludeAssemblies>
       Mono.Options
       Newtonsoft.Json
+      Keeg.IO
     </IncludeAssemblies>
   </Costura>
 </Weavers>

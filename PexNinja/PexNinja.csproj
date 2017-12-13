@@ -57,13 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO\BinaryReaderEndian.cs" />
-    <Compile Include="IO\BinaryWriterEndian.cs" />
-    <Compile Include="IO\Prefix.cs" />
-    <Compile Include="NumberHelpers\DoubleUnion.cs" />
-    <Compile Include="NumberHelpers\Endian.cs" />
-    <Compile Include="NumberHelpers\SingleUnion.cs" />
-    <Compile Include="NumberHelpers\Swap.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="OptionsHandler.cs" />
     <Compile Include="Pex\IPex.cs" />
@@ -90,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ninja-simple.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\external\Keeg.IO\Keeg.IO\Keeg.IO.csproj">
+      <Project>{bc1fac0f-f5ef-4f41-9643-a1a1eab93b5f}</Project>
+      <Name>Keeg.IO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.2.2.1.0\build\net452\Fody.targets" Condition="Exists('..\packages\Fody.2.2.1.0\build\net452\Fody.targets')" />
